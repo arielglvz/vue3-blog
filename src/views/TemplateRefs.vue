@@ -1,6 +1,6 @@
 <template>
-  <div class="home">
-    home
+  <div class="templateRefs">
+    Test
     <p ref="p">My name is {{ name }} and my age is {{ age }}</p>
     <button @click="handleClick">Click Me</button>
     <button @click="age++">add 1 to age</button>
@@ -14,8 +14,8 @@ import { ref } from 'vue';
 // @ is an alias to /src
 
 export default {
+  name: 'TemplateRefs',
 
-  name: 'Home',
   // Composition API:
   setup() {
     
