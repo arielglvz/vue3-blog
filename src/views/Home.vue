@@ -1,55 +1,23 @@
 <template>
   <div class="home">
     <h1>Home</h1>
-    <input type="text" v-model="search">
-    <p>Search term - {{ search }}</p>
-    <div v-for="name in matchingNames" :key="name">{{ name }}</div>
-    <button @click="handleStopWatching">stop watching</button>
+    <PostList :posts="posts" />
   </div>
 </template>
 
 <script>
-import { computed, ref, watch, watchEffect } from 'vue';
-
+import PostList from '@/components/PostList.vue';
+import { ref } from 'vue';
 export default {
   name: 'Home',
+  components: { PostList },
   setup() {
-    const search = ref('')
-    const names = ref(['mario', 'yoshi', 'luigi', 'toad',  'bowser', 'koopa', 'peach',])
+    const posts = ref([
+      { title: 'welcome to the blog', body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, at! Est quibusdam debitis itaque quisquam, recusandae natus dolore quae ullam voluptas ad aliquid quasi dolorum doloremque sapiente placeat ut. Animi optio quam quis ipsum quas consequatur veniam quod dolorem amet, quo, inventore voluptatem id expedita minus dolore architecto harum magni sit illo voluptatibus pariatur. Voluptates deleniti culpa error qui distinctio, eos ex necessitatibus, id atque aliquam maiores, iste laborum doloribus suscipit officiis accusamus magni! Iure, beatae deleniti earum ipsa omnis minima, exercitationem fuga neque rerum quidem iste libero tempora quisquam velit quaerat maxime modi qui, natus in mollitia magnam. Facere?', id: 1 },
+      { title: 'top 5 css tips', body: 'Lorem ipsum', id: 2 },
+    ])
 
-    /** 
-     * ! watch vs watchEffect 
-     * TODO: Use watch when you need fine-grained control over which dependencies trigger the side effect. 
-     * TODO: Use watchEffect for automatic, comprehensive tracking of all reactive dependencies within a function.
-    */
-
-    /** 
-     * * How to stop watching. Simply store it into a variable 
-    */
-    const stopWatching = watch(search, () => {
-      console.log('watch function run')
-    })
-
-    const stopEffect = watchEffect(() => {
-      console.log('watchEffect function run', search.value)
-    })
-
-    /** 
-     * ! Computed Values
-    */
-    const matchingNames = computed(() => {
-      return names.value.filter((name) => name.includes(search.value))
-    })
-
-    /** 
-     * ! Handle stop watching
-    */
-    const handleStopWatching = () => {
-      stopWatching()
-      stopEffect()
-    }
-
-    return { names, search, matchingNames, handleStopWatching}
+    return { posts }
   }
 }
 </script>

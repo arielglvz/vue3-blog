@@ -1,6 +1,6 @@
 <template>
-  <div class="hom">
-    <h1>Home</h1>
+  <div class="content">
+    <h1>Refs vs Reactive</h1>
     <!-- Refs vs Reactive -->
     <h2>Refs</h2>
     <p>{{ ninjaOne.name }} - {{ ninjaOne.age }}</p>
@@ -16,7 +16,7 @@
 import { ref, reactive } from 'vue';
 
 export default {
-  name: 'Home',
+  name: 'RefsVsReactive',
   setup() {
     const ninjaOne = ref({ name: 'mario', age: 30 })
     const ninjaTwo = reactive({ name: 'luigi', age: 35 })
